@@ -20,7 +20,10 @@ This is work under progress.
          * Dataset Name: activeSessions
          * Table name: activeSessions
 3. Start both Azure Stream Analytics jobs
-4. GameEventsGenerator: configure the event hub connection string in app.config to the deployed event hub. Run the GameEventsGenerator.
+4. GameEventsGenerator:
+      * configure the event hub connection string in app.config to the deployed event hub. 
+      * Check that the Eventhub name matches the one that you specified when creating the event hub.
+      * Run the GameEventsGenerator.
 5. Go to http://powerbi.com
    1. Click on **Streaming Datasets** and find the two datasets (durations and activeSessions) newly created by the ASA jobs. Create a report from each of them.
    ![](PBI/streamingDatasets.jpg)
