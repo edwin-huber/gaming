@@ -6,8 +6,8 @@ This is work under progress.
 # Setup of game analytics demo
 
 1. Run template deployment (armdeploy.json and armdeploy.parameters.json)
-   a. Watch out for resource naming restrictions, length and capitalization.
-   b. The arm template will add a unique identifier to the names you choose for storage accounts etc.
+      * Watch out for resource naming restrictions, length and capitalization.
+      * The arm template will add a unique identifier to the names you choose for storage accounts etc.
 2. Setup an additional output to each Azure Stream Analytics job, named outPBI
       * sessionDurations
          * Output alias: outPBI
