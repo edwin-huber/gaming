@@ -18,6 +18,12 @@
             "metadata": {
                 "description": "Name of the Event Hub"
             }
+        },
+        "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the storage account must be between 3 and 24 characters long, using numbers and lowercase letters only"
+            }
         }
     },
     "variables": {
@@ -26,7 +32,7 @@
         "ehApiVersion": "2015-08-01",
         "asaApiVersion": "2015-09-01",
         "uniqueIdentifier": "[uniqueString(resourceGroup().id)]",
-        "storageAccountName": "[concat(resourceGroup().name, variables('uniqueIdentifier'))]",
+        "storageAccountName": "[parameters('storageAccountName')]",
         "namespaceName": "[concat(resourceGroup().name, variables('uniqueIdentifier'), '-ns')]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
         "authRuleResourceId": "[resourceId('Microsoft.EventHub/namespaces/authorizationRules', variables('namespaceName'), variables('defaultSASKeyName'))]",
