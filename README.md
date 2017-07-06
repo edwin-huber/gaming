@@ -48,4 +48,4 @@ Some sample queries:
       Pin one of these visuals to the dashboard as well.
       ![](PBI/qa.jpg)
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fedwin-huber%2Fgaming%2Fmaster%2Farmdeploy.json" target="_blank">    <img src="http://azuredeploy.net/deploybutton.png"/></a>
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fedwin-huber%2Fgaming%2Fdeliberatebreak%2Farmdeploy.json" target="_blank">    <img src="http://azuredeploy.net/deploybutton.png"/></a>
