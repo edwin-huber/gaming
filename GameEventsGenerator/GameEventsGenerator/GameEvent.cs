@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Globalization;
 
@@ -55,24 +51,6 @@ namespace GameEventsGenerator
             });
         }
 
-        private string FormatCsv()
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine(@"PlayerId,GameId,Timestamp,GameActivity,Latitude,Longitude,City,Country");
-            sb.AppendLine(
-                string.Join(
-                    ",",
-                    this.PlayerId,
-                    this.GameId.ToString(CultureInfo.InvariantCulture),
-                    this.EntryTime.ToString("o"),
-                    @"start",
-                    this.PlayerLocation.Latitude.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.Longitude.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.City.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.Country.ToString(CultureInfo.InvariantCulture)));
-
-            return sb.ToString();
-        }
     }
 
     public class ExitEvent : GameEvent
@@ -114,23 +92,5 @@ namespace GameEventsGenerator
             });
         }
 
-        private string FormatCsv()
-        {
-            var sb = new StringBuilder();
-            sb.AppendLine(@"PlayerId,GameId,Timestamp,GameActivity,Latitude,Longitude,City,Country");
-            sb.AppendLine(
-                string.Join(
-                    ",",
-                    this.PlayerId,
-                    this.GameId.ToString(CultureInfo.InvariantCulture),
-                    this.ExitTime.ToString("o"),
-                    @"stop",
-                    this.PlayerLocation.Latitude.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.Longitude.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.City.ToString(CultureInfo.InvariantCulture),
-                    this.PlayerLocation.Country.ToString(CultureInfo.InvariantCulture)));
-
-            return sb.ToString();
-        }
     }
 }

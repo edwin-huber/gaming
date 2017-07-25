@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  gameeventsgenerator:
+    image: gameeventsgenerator
+    build:
+      context: .\GameEventsGenerator
+      dockerfile: Dockerfile

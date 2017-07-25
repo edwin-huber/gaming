@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
 using System.Threading;
 using System.Globalization;
-using System.Configuration;
 
 namespace GameEventsGenerator
 {
@@ -95,6 +91,7 @@ namespace GameEventsGenerator
         public static void SendData(string serviceBusConnectionString, string eventHubName)
         {
             var eventHub = EventHubClient.CreateFromConnectionString(serviceBusConnectionString, eventHubName);
+            // var eventHub = EventHubClient.Create(serviceBusConnectionString);
 
             var timerInterval = TimeSpan.FromSeconds(1);
             var generator = GameDataEventGenerator.Generator();

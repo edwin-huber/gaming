@@ -61,19 +61,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BrazilianGamers.cs" />
+    <Compile Include="Data\GamersRest.cs" />
+    <Compile Include="Data\GermanGamers.cs" />
+    <Compile Include="Data\WorldCities.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="EventBuffer.cs" />
     <Compile Include="EventHubHelper.cs" />
@@ -85,15 +83,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\BrazilianGamers.csv" />
-    <None Include="Data\GamerNames.csv" />
-    <None Include="Data\GamersRest.csv" />
-    <None Include="Data\GermanGamers.csv" />
-    <None Include="Data\world_cities.csv" />
-    <None Include="Data\world_cities1.csv" />
+    <None Include="Dockerfile" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

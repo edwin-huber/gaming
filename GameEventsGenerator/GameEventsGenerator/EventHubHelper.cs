@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.ServiceBus.Messaging;
 using Microsoft.ServiceBus;
 using RetryPolicy = Microsoft.Practices.TransientFaultHandling.RetryPolicy;
@@ -58,8 +54,7 @@ namespace GameEventsGenerator
         {
             public bool IsTransient(Exception ex)
             {
-                var messagingException = ex as MessagingException;
-                if ((messagingException != null && messagingException.IsTransient) || ex is TimeoutException)
+                if ((ex is MessagingException messagingException && messagingException.IsTransient) || ex is TimeoutException)
                 {
                     Console.WriteLine(ex);
                     return true;
