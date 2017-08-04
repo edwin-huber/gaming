@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEventsGenerator", "Game
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DCC94982-4170-447D-A575-EDF9EFAB7CCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreGameEventsGenerator", "..\NetCoreGameEventsGenerator\NetCoreGameEventsGenerator.csproj", "{B9499AE3-6852-4E7D-B599-A28F98311CAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DCC94982-4170-447D-A575-EDF9EFAB7CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCC94982-4170-447D-A575-EDF9EFAB7CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCC94982-4170-447D-A575-EDF9EFAB7CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9499AE3-6852-4E7D-B599-A28F98311CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9499AE3-6852-4E7D-B599-A28F98311CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9499AE3-6852-4E7D-B599-A28F98311CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9499AE3-6852-4E7D-B599-A28F98311CAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
