@@ -1,6 +1,6 @@
 # Gaming
 
-Demos in gaming on Azure
+Demos for working with gaming data in Azure.
 This is work under progress.
 
 # Setup of game analytics demo
@@ -20,10 +20,21 @@ This is work under progress.
          * Dataset Name: activeSessions
          * Table name: activeSessions
 3. Start both Azure Stream Analytics jobs
-4. GameEventsGenerator:
+4. Game Events Generators:  
+      There are currently 2 different game events generators available, 1 for Windows using .Net Framework, and one for Linux / .Net Core.
+      A 3rd Node.js generator is currently in development.  
+      Both of the current game events generators can be deployed to a Docker container and run from there, to easily start multiple instances using **"Docker run"**.
+
+      **GameEventsGenerator (.Net Framework 4.5)**   
       * configure the event hub connection string in app.config to the deployed event hub. 
       * Check that the Eventhub name matches the one that you specified when creating the event hub.
+      * Run the GameEventsGenerator.  
+
+      **NetCoreGameEventsGenerator (.Net Core)** 
+      * configure the event hub connection string in Environment.cs to the deployed event hub. 
+      * Check that the Eventhub name matches the one that you specified when creating the event hub.
       * Run the GameEventsGenerator.
+      
 5. Go to http://powerbi.com
    1. Click on **Streaming Datasets** and find the two datasets (durations and activeSessions) newly created by the ASA jobs. Create a report from each of them.
    ![](PBI/streamingDatasets.jpg)
