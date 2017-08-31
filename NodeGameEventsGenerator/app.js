@@ -8,12 +8,12 @@ const EventHubClient = require('azure-event-hubs').Client;
 const intervalMilliseconds = 2000;
 const totalIterations = 10000;
 const MaxGameId = 5;
-// maximum session length of 300 seconds
-const MaxSessionLength = 300;
-const CrashProbability = 0.1;
 
-var Players = []; //=  List<Player>;
-var WorldCities = []; // List<Location>
+const MaxSessionLength = 300;
+const exitProbability = 0.1;
+
+var Players = [];
+var WorldCities = []; 
 var numPlayers;
 var numWorldCities;
 
@@ -21,12 +21,6 @@ var numWorldCities;
 // In that case, the eventHubPath variable is not used and can be left undefined.
 var connectionString = process.env.CONNECTION_STRING; 
 var eventHubPath = process.env.EVENTHUB_PATH ;
-
-
-// Not sure we need these any more:
-var BackgroundMode;
-
-var random = Math.random();
 
 // Game Data Classes
 //###############
@@ -39,7 +33,6 @@ class GameLocation {
         this.Country = Country;
     }
 }
-
 
 class GameEventKey {
     constructor(TimeStamp, EventId) {
@@ -55,12 +48,10 @@ class GameEvent {
         this.PlayerLocation = PlayerLocation;
     }
     Format() {
-        // return string formatted game event
         return JSON.stringify(this);
     };
 }
 
-// removed "extends"
 class EntryEvent {
     constructor(EntryTime, PlayerId, GameId, PlayerLocation) {
         this.EntryTime = EntryTime;
@@ -74,7 +65,6 @@ class EntryEvent {
 
     FormatJson() {
         var jsonObj = {
-
             PlayerId: this.PlayerId,
             GameId: this.GameId,
             Time: this.EntryTime,
@@ -89,8 +79,6 @@ class EntryEvent {
 
 }
 
-// removed extends
-// class ExitEvent extends GameEvent {
 class ExitEvent {
     constructor(ExitTime, PlayerId, GameId, PlayerLocation) {
         this.ExitTime = ExitTime;
@@ -122,9 +110,6 @@ class ExitEvent {
 class EventBuffer {
     constructor() {
         this.eventId = 0;
-        // from C# implentation:
-        // Sorted List does not allow duplicates. Add event id to the key and use custom comparer
-        // shall simplify the node code
         this.events = [];
     }
     Add(time, e) {
@@ -141,36 +126,33 @@ var eventBuffer = new EventBuffer(); // class is not hoisted so needs init here.
 function next(startTime, interval, numEvents) {
 
     for (i = 0; i < numEvents; i++) {
-        //var playerId = PlayerIds[random.Next(PlayerIds.Length)];
+
         let player = Players[(Math.floor(Math.random() * Players.length))];
         let playerId = player.Name;
         let playerLoc = player.PlayerLocation;
 
-        let entryTime = startTime; // + Math.floor(Math.random() * interval.TotalMilliseconds);
+        let entryTime = startTime; 
 
         let diff = startTime + Math.floor(Math.random() * MaxSessionLength);
 
         let exitTime = new Date(diff);
-        let crash = Math.random();
+        let willExit = Math.random();
 
         let gameId = Math.floor(Math.random() * MaxGameId);
 
         // Original code would Only add GameEvent if there is not already an ExitEvent of given PlayerId with a timestamp greater than given timestamp
         // not sure if that is really necessary for our demo
-
         eventBuffer.Add(entryTime, new EntryEvent(entryTime, playerId, gameId, playerLoc));
 
-        if (crash > CrashProbability) {
-            // console.log("exiting becuase of %s > %s", crash, CrashProbability)
+        if (willExit > exitProbability) {
             eventBuffer.Add(exitTime, new ExitEvent(exitTime, playerId, gameId, playerLoc));
         }
     }
 }
 
 function initializePlayers() {
-    // var reader = File.ReadAllLines(@".\Data\world_cities.csv");
     for (i = 0; i < Cities.length; i++) {
-        // ["Abu Dhabi","United Arab Emirates","24.46667","54.36667"],
+        // Our array format looks like: ["Abu Dhabi","United Arab Emirates","24.46667","54.36667"],
         WorldCities.push(new GameLocation(Cities[i][3], Cities[i][2], Cities[i][0], Cities[i][1]));
     }
     numWorldCities = WorldCities.length;
@@ -198,10 +180,8 @@ function printError(err) {
 function sendEvent(eventBody) {
         console.log('Sending Event: ' + JSON.stringify(eventBody, undefined, 2));
         sender.then((tx) => tx.send(eventBody))
-        // .then(() => console.log('success'))
         .catch(printError);
 };
-
 
 // this is a useful construct for our game loop, as we are using node which is actually
 // based on a non blocking event loop, so we need some form of delaying timer loop
@@ -236,36 +216,28 @@ var client = EventHubClient.fromConnectionString(connectionString, eventHubPath)
 var cansend = false;
 
 var sender = client.open()
-    //.then(client.getPartitionIds.bind(client))
     .then(function () {
         client.createSender();
     })
-    //.then(cansend = true)
     .then(function() {
         cansend = true;
         return client.createSender();
       })
-      //.then(sendEvent('foo'))
     .catch(printError);
 
 function sendDataToAzure(data) {
-    // console.log(data);
     data.forEach((d) => sendEvent(d.FormatJson()));
-
 }
 
 initializePlayers();
 
 // Start game loop
 interval(function () {
-
     counter++;
     next(new Date(), 1, 2);
     if (cansend) {
         sendDataToAzure(getEvents());
-
-        console.log('%s, Command sent, iteration %s', new Date(), counter);
+        console.log('%s, events sent, iteration %s', new Date(), counter);
     }
-
 }, sendInterval, iterations);
 
