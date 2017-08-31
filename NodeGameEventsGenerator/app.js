@@ -1,13 +1,12 @@
 // Globals and requires
 // ############
-const config = require('dotenv').config()
+const config = require('dotenv').config();
 const Gamers = require('./Data/GamersRest.js').Gamers;
 const Cities = require('./Data/WorldCities.js').Cities;
 const EventHubClient = require('azure-event-hubs').Client;
-// const Promise = require('Bluebird');
 
 const intervalMilliseconds = 2000;
-const totalIterations = 100;
+const totalIterations = 10000;
 const MaxGameId = 5;
 // maximum session length of 300 seconds
 const MaxSessionLength = 300;
@@ -251,7 +250,7 @@ var sender = client.open()
 
 function sendDataToAzure(data) {
     // console.log(data);
-    data.forEach((d) => sendEvent(d));
+    data.forEach((d) => sendEvent(d.FormatJson()));
 
 }
 
