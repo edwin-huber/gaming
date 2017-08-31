@@ -1,0 +1,15 @@
+{
+  "name": "nodegameeventsgenerator",
+  "version": "1.0.0",
+  "description": "Demo game events generator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "azure-event-hubs": "0.0.8",
+    "dotenv": "^4.0.0"
+  }
+}
