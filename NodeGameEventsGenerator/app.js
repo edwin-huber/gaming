@@ -20,8 +20,8 @@ var numWorldCities;
 
 // The Event Hubs SDK can also be used with an Azure IoT Hub connection string.
 // In that case, the eventHubPath variable is not used and can be left undefined.
-var connectionString = process.env.CONNECTION_STRING; // || 'Endpoint=sb://gamingbidemo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=20fzCRIt99V0J1VDQ23BYU+VAHpUhy0aXKQOXeoQHrg=';
-var eventHubPath = process.env.EVENTHUB_PATH ; // || 'demoeventhub';
+var connectionString = process.env.CONNECTION_STRING; 
+var eventHubPath = process.env.EVENTHUB_PATH ;
 
 
 // Not sure we need these any more:
