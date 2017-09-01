@@ -2,12 +2,13 @@
   "name": "nodegameeventsgenerator",
   "version": "1.0.0",
   "description": "Demo game events generator",
+  "repository": "https://github.com/edwin-huber/gaming",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Edwin Huber",
   "license": "ISC",
   "dependencies": {
     "azure-event-hubs": "0.0.8",
