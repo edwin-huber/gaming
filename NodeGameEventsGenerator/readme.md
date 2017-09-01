@@ -31,3 +31,8 @@ Using the "-e" switch, note the need for the speechmarks to avoid escaping chara
 **docker run -e CONNECTION_STRING="Endpoint=sb://blahblahblah.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=234566762354712634sadkfhaskdhgasoQHrg=" -e EVENTHUB_PATH="demoeventhub" yourtagname**  
 or, alternatively, use a simple text file that just contains a list of the env variables, in the same form as above (without speech marks like the .env file mentioned above):  
 **docker run --env-file .env yourtaghere**
+
+You can pull the image from DockerHub here:
+
+**docker pull edwinhuber/nodegamingbidemo**
+
